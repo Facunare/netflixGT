@@ -9,7 +9,6 @@ const SearchBar = ({setSearch, searchMovies, page}) =>{
             <input type="text" onChange={(e)=>setSearch(e.target.value)} />
             <button>
                 Buscar
-                <Link to={page == "home" ? "/popular" : ""}></Link>
             </button>
         </form>
     )

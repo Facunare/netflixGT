@@ -17,6 +17,10 @@ const NavBar = ({searchMovies, setSearch})=>{
           </div>
           
           <SearchBar setSearch={setSearch} searchMovies={searchMovies}/>
+          {/* <div>
+            <button>Log In</button>
+            <button>Sign Up</button>
+          </div> */}
         </header>
     )
 }

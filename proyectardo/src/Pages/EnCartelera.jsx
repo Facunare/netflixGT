@@ -9,7 +9,6 @@ function PeliculasPopulares() {
   const [search, setSearch] = useState('')
   const [genres, setGenres] = useState([])
   const [languages, setLanguages] = useState([])
-  const [range, setRange] = useState()
   const [firstDate, setFirstDate] = useState()
   const [lastDate, setLastDate] = useState()
   const date1Ref = useRef(null);
@@ -50,6 +49,8 @@ function PeliculasPopulares() {
     fetchMovies(`https://api.themoviedb.org/3/search/movie?api_key=dd4bd1e62fd7bef02e9f3da5f0b10596&query=${search}`)    
   
   }
+
+  
     
   const handleGenre = (e)=>{
     e.preventDefault()
@@ -64,10 +65,7 @@ function PeliculasPopulares() {
 
   const orderBy = (type, data)=>fetchMovies(`https://api.themoviedb.org/3/discover/movie?api_key=dd4bd1e62fd7bef02e9f3da5f0b10596&sort_by=${data}.${type}&page=${page}`)
 
-  const handleSubmitRange = (e)=>{
-    e.preventDefault()
-    fetchMovies(`https://api.themoviedb.org/3/discover/movie?api_key=dd4bd1e62fd7bef02e9f3da5f0b10596&vote_average.gte=${range}&vote_average.lte=10&page=${page}`)
-  }
+
 
   const handleSubmitDate = (e) =>{
     e.preventDefault()
@@ -112,10 +110,7 @@ function PeliculasPopulares() {
 
             <Buttons orderBy={orderBy}/>
 
-            <form action="" onSubmit={handleSubmitRange} className="range">
-              <input type="range" onChange={(e)=>setRange(e.target.value)} min="0" max="10"/>
-              <button>Filtrar</button>
-            </form>
+    
             
             <form action="" onSubmit={handleSubmitDate} className="dates">
               <input type="date" name="from" ref={date1Ref}/>
