@@ -242,7 +242,7 @@ header form button:hover{
 }
 
 .home_main{
-    height: 40vh;
+    height: 91vh;
     background-color: #02496e;
     margin: 0;
     display: flex;
@@ -265,8 +265,8 @@ header form button:hover{
     margin-top: 20px;
 }
 
-.trend_section{
-    background-color: #009cd8;
+.trend_section, .next_section{
+    background-color: #036ea8;
     display: flex;
     height: 60vh;
     align-items: center;
@@ -277,15 +277,18 @@ header form button:hover{
 }
 
 .trendTitle{
-    background-color: #009cd8;
+    background-color: #036ea8;
     color: white;
-    padding: 10px;
+    padding: 10px 50px;
+    text-align: center;
+    font-size: 40px;
 }
+
 .cardMovie{
     display: flex;
     padding-left: 100px;
     width: auto;
-    background-color: #009cd8;
+    background-color: #036ea8;
     margin: 50px;
 }
 
@@ -677,7 +680,7 @@ header form button:hover{
 .home_main{
     background-image: url('../public/pelis.jpg');
     background-repeat: no-repeat;
-    filter: grayscale(.7)
+    filter: grayscale(.8);
 }
 
 .fondoGris{
