@@ -17,10 +17,10 @@ const NavBar = ({searchMovies, setSearch})=>{
           </div>
           
           <SearchBar setSearch={setSearch} searchMovies={searchMovies}/>
-          {/* <div>
-            <button>Log In</button>
-            <button>Sign Up</button>
-          </div> */}
+          <div className='autentication'>
+          <li className='login_li'><a className='login__A' href="/login">Login</a></li>
+          <li className='signup__li'><a className='signup__A' href="/signup">Signup</a></li>
+          </div>
         </header>
     )
 }

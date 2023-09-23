@@ -686,3 +686,32 @@ header form button:hover{
 .fondoGris{
     height: 85%;
 }
+
+.autentication{
+    margin-right: 50px;
+    display: flex;
+    gap: 20px;
+}
+
+.autentication li{
+    border-radius: 7px;
+    padding: 5px;
+    transition: background-color ease .3s;
+    cursor: pointer;
+    border: none;
+}
+
+.autentication li{
+    list-style: none;
+    background-color: rgb(167, 160, 160);
+
+}
+
+.autentication a{
+    color: white;
+    text-decoration: none;
+}
+
+.autentication li:hover{
+    background-color: #adaaaa;
+}

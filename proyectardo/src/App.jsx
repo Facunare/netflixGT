@@ -8,6 +8,7 @@ import NextMovies from './Pages/NextMovies'
 import People from './Pages/People'
 import MovieDetails from './Pages/MovieDetails';
 import PeopleDetails from './Pages/PeopleDetails';
+import Signup from './Pages/Signup';
 function App() {
   
     return (
@@ -20,6 +21,9 @@ function App() {
           <Route path='/personalities' element={<People/>}></Route>
           <Route exact path="/movie/:id" element={<MovieDetails/>}></Route>
           <Route exact path="/person/:id" element={<PeopleDetails/>}></Route>
+          <Route exact path="/signup/" element={<Signup/>}></Route>
+          {/* <Route exact path="/login/" element={<Signup/>}></Route>
+          <Route exact path="/add-favorite/" element={<Signup/>}></Route> */}
         </Routes>
       </Router>
   );
