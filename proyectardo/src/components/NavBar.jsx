@@ -19,7 +19,7 @@ const NavBar = ({searchMovies, setSearch})=>{
           <SearchBar setSearch={setSearch} searchMovies={searchMovies}/>
           <div className='autentication'>
           <li className='login_li'><a className='login__A' href="/login">Login</a></li>
-          <li className='signup__li'><a className='signup__A' href="/signup">Signup</a></li>
+          <li className='signup__li'><a className='signup__A' href="/register">Signup</a></li>
           </div>
         </header>
     )
