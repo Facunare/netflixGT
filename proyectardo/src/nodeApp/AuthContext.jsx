@@ -27,7 +27,6 @@ export const AuthProvider = ({ children }) => {
       console.error("Error in signup:", error);
     }
   };
-
   const signin = async (user) => {
     try {
       const res = await loginRequest(user);
@@ -45,6 +44,7 @@ export const AuthProvider = ({ children }) => {
     setUser(null);
     setIsAuthenticated(false);
   };
+  
   useEffect(() => {
     const checkLogin = async () => {
       const cookies = Cookies.get();

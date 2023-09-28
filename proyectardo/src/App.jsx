@@ -12,41 +12,44 @@ import Login from './Pages/Login';
 import ProtectedRoute from './Pages/ProtectedRoute';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './nodeApp/AuthContext';
+import { MovieProvider } from './nodeApp/MovieContext';
 
 function App() {
   return (
     <AuthProvider>
-      <Router>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/popular" element={<PeliculasPopulares />} />
-          <Route path="/now" element={<EnCartelera />} />
-          <Route path="/nextMovies" element={<NextMovies />} />
-          <Route path="/personalities" element={<People />} />
-          <Route path="/movie/:id" element={<MovieDetails />} />
-          <Route path="/person/:id" element={<PeopleDetails />} />
-          <Route path="/register" element={<Signup />} />
-          <Route path="/login" element={<Login />} />
+      <MovieProvider>
+        <Router>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/popular" element={<PeliculasPopulares />} />
+            <Route path="/now" element={<EnCartelera />} />
+            <Route path="/nextMovies" element={<NextMovies />} />
+            <Route path="/personalities" element={<People />} />
+            <Route path="/movie/:id" element={<MovieDetails />} />
+            <Route path="/person/:id" element={<PeopleDetails />} />
+            <Route path="/register" element={<Signup />} />
+            <Route path="/login" element={<Login />} />
 
-          {/* Protege estas rutas con ProtectedRoute */}
-          <Route
-            path="/addFavorite"
-            element={
-              <ProtectedRoute>
-                <People />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/comment/:id"
-            element={
-              <ProtectedRoute>
-                <MovieDetails />
-              </ProtectedRoute>
-            }
-          />
-        </Routes>
-      </Router>
+            {/* Protege estas rutas con ProtectedRoute */}
+            <Route
+              path="/addFavorite/:id"
+              element={
+                <ProtectedRoute>
+                  <MovieDetails />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/comment/:id"
+              element={
+                <ProtectedRoute>
+                  <MovieDetails />
+                </ProtectedRoute>
+              }
+            />
+          </Routes>
+        </Router>
+      </MovieProvider>
     </AuthProvider>
   );
 }

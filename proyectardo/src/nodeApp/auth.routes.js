@@ -8,8 +8,9 @@ const router = Router()
 router.post('/register', validateSchema(registerSchema), register)
 router.post('/login', validateSchema(loginSchema), login)
 router.use(cookieParser());
-router.post('/logout', logout)
+router.post('/logout', authRequired, logout)
 router.get('/verify', verifyToken)
 
-router.post('/addFavorite', authRequired, addFavorite)
+router.post('/addFavorite/:id', authRequired, addFavorite);
+
 export default router

@@ -8,7 +8,14 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true
-    }
+    },
+    favoriteMovies: [
+      {
+          type: String,
+      }
+  ]
+
 })
+
 
 export default mongoose.model('Users', userSchema)

@@ -8,41 +8,48 @@ const Login = () => {
     const { register, handleSubmit } = useForm();
     const {signin, isAuthenticated} = useAuth()
     const navigate = useNavigate();
+    const favoriteMovies = [];
     const handleLogin = handleSubmit((data) => {
+      data.favoriteMovies = favoriteMovies;
         signin(data)
-        console.log(data)
     })
 
     useEffect(() => {
       if (isAuthenticated) {
-        console.log("hola")
-        navigate("/login");
+        navigate("/");
       }
     }, [isAuthenticated]);
     return (
-      <div>
-        <NavBar />
-        <form
-          action="POST"
-          className="signup_form"
-          onSubmit={handleSubmit(handleLogin)}
-        >
+      <>
+      <NavBar />
+      <div className="loginMain">
+        <form action="POST" className="signup_form" onSubmit={handleSubmit(handleLogin)}>
+          <h1>Login</h1>
+       <div>
+        
+       <label htmlFor="username">Nombre de usuario: </label>
           <input
             type="text"
             className="username-sign"
             name="username"
             {...register("username", { required: true })}
           />
-          <input
-            type="password"
-            className="password"
-            name="password"
-            {...register("password", { required: true })}
-          />
+       </div>
+          <div>
+
+          <label htmlFor="password">Contraseña: </label>
+            <input
+              type="password"
+              className="password"
+              name="password"
+              {...register("password", { required: true })}
+            />
+          </div>
           <button>Loguearse</button>
             <p>No tenes una cuenta?<Link to="/register">Registrate!</Link></p>
         </form>
       </div>
+      </>
     );
   };
   

@@ -17,7 +17,8 @@ export const loginSchema = z.object({
     }),
     password: z.string({
         required_error: "password is required"
-    }).min(6,{
-        message: "Password must be at least 6 characeters"
-    })
+    }).min(6, {
+        message: "Password must be at least 6 characters"
+    }),
+    favoriteMovies: z.array(z.string())
 })

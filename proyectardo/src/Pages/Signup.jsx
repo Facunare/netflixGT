@@ -20,28 +20,39 @@ const Signup = () => {
       }
     }, [isAuthenticated]);
   return (
-    <div>
+    <>
       <NavBar />
+    <div className="signupMain">
       <form
         action="POST"
         className="signup_form"
         onSubmit={handleSubmit(handleSignup)}
       >
-        <input
-          type="text"
-          className="username-sign"
-          name="username"
-          {...register("username", { required: true })}
-        />
-        <input
-          type="password"
-          className="password"
-          name="password"
-          {...register("password", { required: true })}
-        />
+        <h1>Signup</h1>
+        <div>
+
+        <label htmlFor="username">Nombre de usuario: </label>
+          <input
+            type="text"
+            className="username-sign"
+            name="username"
+            {...register("username", { required: true })}
+          />
+          </div>
+        <div>
+
+          <label htmlFor="password">Contraseña: </label>
+          <input
+            type="password"
+            className="password"
+            name="password"
+            {...register("password", { required: true })}
+          />
+        </div>
         <button type="submit">Registrarse</button>
       </form>
     </div>
+    </>
   );
 };
 

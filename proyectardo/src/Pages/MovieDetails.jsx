@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import useFetch from "../custom_hooks/useFetch"
 import NavBar from "../components/NavBar"
+import { useAuth } from "../nodeApp/AuthContext";
 import ReactModal from "react-modal";
+import { useMovieContext } from "../nodeApp/MovieContext";
+
 const MovieDetails = ()=>{
     const { id } = useParams()
     const [movie, setMovie] = useState({})
@@ -10,14 +12,15 @@ const MovieDetails = ()=>{
     const [showModal, setShowModal] = useState(false);
     const [director, setDirector] = useState("")
     const [cast, setCast] = useState([])
+    const {user} = useAuth()
     const [duracion, setDuracion] = useState("")
     const [media, setMedia] = useState([])
+    const {addFavorite} = useMovieContext()
     useEffect(()=>{
         
         fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=dd4bd1e62fd7bef02e9f3da5f0b10596`)
         .then(res => res.json())
         .then(data =>{
-            // console.log(data)
             console.log(Boolean(data.title))
             setMovie(data)
             const minutos = data.runtime;
@@ -95,7 +98,10 @@ const MovieDetails = ()=>{
 
         
     }
-
+    function handleAddToFavorite(event) {
+        event.preventDefault()
+        addFavorite(user.id, id);
+      }
     return (
         <div>
             <NavBar></NavBar>
@@ -125,6 +131,16 @@ const MovieDetails = ()=>{
                                 
                                 <div>
                                     <button onClick={handleTrailerButtonClick}>Ver trailer</button>
+
+
+
+
+                                    <a href="/addFavorite" className="favoritos" onClick={handleAddToFavorite}>Favoritos</a>
+
+
+
+
+                            
                                     <ReactModal isOpen={showModal} onRequestClose={handleCloseModal} contentLabel="Movie Trailer" style={{overlay: {backgroundColor: "rgba(0, 0, 0, 0.75)"}, content: {
                                         top: "50%",
                                         left: "50%",
@@ -142,7 +158,6 @@ const MovieDetails = ()=>{
                                         width="100%"
                                         height="95%"
                                         src={`https://www.youtube.com/embed/${trailerKey}`}
-                                        frameBorder="0"
                                         allowFullScreen
                                         ></iframe>
                                     </ReactModal>

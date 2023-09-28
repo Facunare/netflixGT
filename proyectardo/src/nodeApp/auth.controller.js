@@ -15,19 +15,14 @@ export const register = async (req, res) => {
         message: ["The username is already in use"],
       });
 
-    // hashing the password
     const passwordHash = await bcrypt.hash(password, 10);
 
-    // creating the user
     const newUser = new User({
       username,
       password: passwordHash,
     });
 
-    // saving the user in the database
     const userSaved = await newUser.save();
-
-    // create access token
     const token = await createAccessToken({
       id: userSaved._id,
     });
@@ -42,12 +37,11 @@ export const register = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
-
 export const login = async (req, res) => {
   try {
     const { username, password } = req.body;
     const userFound = await User.findOne({ username });
-
+    console.log(userFound)
     if (!userFound)
       return res.status(400).json({
         message: ["The username does not exist"],
@@ -63,6 +57,7 @@ export const login = async (req, res) => {
     const token = await createAccessToken({
       id: userFound._id,
       username: userFound.username,
+      favoriteMovies: userFound.favoriteMovies 
     });
 
     res.cookie("token", token);
@@ -70,8 +65,10 @@ export const login = async (req, res) => {
     res.json({
       id: userFound._id,
       username: userFound.username,
+      favoriteMovies: userFound.favoriteMovies
     });
   } catch (error) {
+    
     return res.status(500).json({ message: error.message });
   }
 };
@@ -92,18 +89,34 @@ export const verifyToken = async (req, res) => {
   });
 };
 
-
 export const logout = async (req, res) => {
   res.cookie("token", "");
-  return res.sendStatus(200);
+  return res.redirect("/login");
 };
 
- export const addFavorite = async (req,res)=>{
-    const userFound = await Users.findById(req.user.id)
-    if(!userFound) return res.status(401).json({message: "User not found"})
-    return res.json({
-        id: userFound._id,
-        username: usuario.username,
-        password: usuario.password
-    })
- }
+export const addFavorite = async (req, res) => {
+  console.log("hoal")
+  try {
+    const { userId } = req.body;
+    const { id: movieId } = req.params;
+    const userFound = await User.findById(userId);
+
+    if (!userFound) {
+      return res.status(400).json({
+        message: ["User not found"],
+      });
+    }
+    userFound.favoriteMovies.push(movieId);
+    const userSaved = await userFound.save();
+    const jsonFinal = res.json({
+      id: userSaved._id,
+      username: userSaved.username,
+      favoriteMovies: userSaved.favoriteMovies,
+    });
+    console.log(jsonFinal)
+    return jsonFinal
+
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
