@@ -95,15 +95,18 @@ export const logout = async (req, res) => {
 };
 
 export const addFavorite = async (req, res) => {
-  console.log("hoal")
   try {
     const { userId } = req.body;
     const { id: movieId } = req.params;
-    const userFound = await User.findById(userId);
-
+    const userFound = await User.findById(userId.id);
     if (!userFound) {
       return res.status(400).json({
         message: ["User not found"],
+      });
+    }
+    if (userFound.favoriteMovies.includes(movieId)) {
+      return res.status(400).json({
+        message: ["Movie already in favorites"],
       });
     }
     userFound.favoriteMovies.push(movieId);
@@ -115,6 +118,20 @@ export const addFavorite = async (req, res) => {
     });
     console.log(jsonFinal)
     return jsonFinal
+
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+
+export const viewFavorites = async (req, res) => {
+  try {
+    const { user } = req.body;
+    const userFound = await User.findById(user.id);
+
+      
+    return userFound.favoriteMovies
 
   } catch (error) {
     res.status(500).json({ message: error.message });

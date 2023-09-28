@@ -19,7 +19,6 @@ export const AuthProvider = ({ children }) => {
     try {
       const res = await registerRequest(user);
 
- 
         setUser(res.data);
         setIsAuthenticated(true);
 
@@ -27,17 +26,19 @@ export const AuthProvider = ({ children }) => {
       console.error("Error in signup:", error);
     }
   };
+
+
+
   const signin = async (user) => {
     try {
       const res = await loginRequest(user);
-  
-   
         setUser(res.data);
         setIsAuthenticated(true);
     } catch (error) {
       console.error("Error in signin:", error);
     }
   };
+
 
   const logout = () => {
     Cookies.remove("token");

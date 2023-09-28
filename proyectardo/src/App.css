@@ -771,3 +771,15 @@ header form button:hover{
     height: 80vh;
 }
 
+.favoritos{
+    background-color: #ffdd1f;
+    padding: 5px;
+    width: 100px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: black;
+}
+
+.favoritos:hover{
+   opacity: .9;
+}

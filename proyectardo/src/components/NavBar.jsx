@@ -2,9 +2,16 @@
 import { Link } from 'react-router-dom'
 import { useAuth } from '../nodeApp/AuthContext'
 import SearchBar from './SearchBar'
-
+import { useMovieContext } from "../nodeApp/MovieContext";
 const NavBar = ({searchMovies, setSearch})=>{
     const {isAuthenticated, logout} = useAuth() 
+    const {user} = useAuth()
+ 
+    const {viewFavoritesMovie} = useMovieContext()
+    function handleViewFavorites() {
+      viewFavoritesMovie(user);
+    }
+
     return (
         <header>
           <div className='logo_list'>
@@ -16,6 +23,7 @@ const NavBar = ({searchMovies, setSearch})=>{
               <li className='header__li'><a className='header__A' href="/now">En cartelera</a></li>
               <li className='header__li'><a className='header__A' href="/nextMovies">Proximamente</a></li>
               <li className='header__li'><a className='header__A' href="/personalities">Personas</a></li>
+              <li className='header__li'><a className='header__A' href="/favoritos" onClick={handleViewFavorites}>Favoritos</a></li>
             </ul>
           </div>
           

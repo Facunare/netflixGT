@@ -15,4 +15,6 @@ export const loginRequest = async  (user) => {
 
 export const verifyTokenRequest = async () => axios.get(`/verify`);
 
-export const addFavorite = async (userId, movieId) => await axios.post(`/addFavorite/${movieId}`, { userId }); 
+export const addFavorite = async (userId, movieId) => await axios.post(`/addFavorite/${movieId}`, { userId });
+
+export const viewFavorites = async (user) => await axios.post(`/favoritos`, { user });

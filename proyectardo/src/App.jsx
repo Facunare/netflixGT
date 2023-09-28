@@ -9,6 +9,7 @@ import MovieDetails from './Pages/MovieDetails';
 import PeopleDetails from './Pages/PeopleDetails';
 import Signup from './Pages/Signup';
 import Login from './Pages/Login';
+import Favoritos from './Pages/Favoritos';
 import ProtectedRoute from './Pages/ProtectedRoute';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './nodeApp/AuthContext';
@@ -29,6 +30,8 @@ function App() {
             <Route path="/person/:id" element={<PeopleDetails />} />
             <Route path="/register" element={<Signup />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/favoritos" element={<Favoritos />} />
+            
 
             {/* Protege estas rutas con ProtectedRoute */}
             <Route
@@ -44,6 +47,14 @@ function App() {
               element={
                 <ProtectedRoute>
                   <MovieDetails />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/favoritos"
+              element={
+                <ProtectedRoute>
+                  <Favoritos />
                 </ProtectedRoute>
               }
             />

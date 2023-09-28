@@ -1,5 +1,5 @@
 import { Router } from "express";
-import {login, register, logout, addFavorite, verifyToken} from './auth.controller.js'
+import {login, register, logout, addFavorite, verifyToken, viewFavorites} from './auth.controller.js'
 import { authRequired } from './validateToken.js'
 import { validateSchema } from "./validator.middleware.js";
 import { registerSchema, loginSchema } from "./auth.schema.js";
@@ -12,5 +12,5 @@ router.post('/logout', authRequired, logout)
 router.get('/verify', verifyToken)
 
 router.post('/addFavorite/:id', authRequired, addFavorite);
-
+router.post('/favoritos', viewFavorites);
 export default router

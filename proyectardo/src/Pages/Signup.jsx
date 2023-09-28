@@ -8,10 +8,14 @@ const Signup = () => {
   const { register, handleSubmit } = useForm();
   const {signup, isAuthenticated} = useAuth()
     const navigation = useNavigate()
+
+
     const handleSignup = async (values) => {
       await signup(values)
       console.log(values)
     };
+    
+
     
     useEffect(() => {
       if (isAuthenticated) {

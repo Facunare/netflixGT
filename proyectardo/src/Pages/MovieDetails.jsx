@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import NavBar from "../components/NavBar"
+import { useForm } from "react-hook-form"
 import { useAuth } from "../nodeApp/AuthContext";
 import ReactModal from "react-modal";
 import { useMovieContext } from "../nodeApp/MovieContext";
@@ -15,7 +16,8 @@ const MovieDetails = ()=>{
     const {user} = useAuth()
     const [duracion, setDuracion] = useState("")
     const [media, setMedia] = useState([])
-    const {addFavorite} = useMovieContext()
+    const {addFavoriteMovie} = useMovieContext()
+    const { handleSubmit } = useForm();
     useEffect(()=>{
         
         fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=dd4bd1e62fd7bef02e9f3da5f0b10596`)
@@ -100,7 +102,7 @@ const MovieDetails = ()=>{
     }
     function handleAddToFavorite(event) {
         event.preventDefault()
-        addFavorite(user.id, id);
+        addFavoriteMovie(user, id);
       }
     return (
         <div>
