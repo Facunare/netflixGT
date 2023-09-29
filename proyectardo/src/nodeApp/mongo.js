@@ -5,7 +5,7 @@ import cookieParser from "cookie-parser";
 import cors from 'cors'
 const app = express()
 app.use(cors({
-    origin: 'https://netflix-gt-deploy.vercel.app',
+    origin: 'https://netflix-gt-bdx8.vercel.app',
     credentials: true,
     methods: ['POST', 'GET']
 }))
